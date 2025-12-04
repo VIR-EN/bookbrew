@@ -33,7 +33,12 @@ export default function SearchPage() {
                         <p key = {author.name} className="text-gray-600 mr-5">By {author.name} </p>
                         ))}
                         <Link href={"/"} className = "mr-5 text-blue-600 border-b">Add A Review</Link>
-                        <Link href={"/"} className = "text-blue-600 border-b">View Reviews</Link>
+                        <Link
+                            href={`/books/${book.id}/reviews`}
+                            className="text-blue-600 border-b mr-5"
+                        >
+                            View Reviews
+                        </Link>
                     </div>
                 ))}
             </div>

@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { searchBooks } from "@/lib/bigbook";
 
 // This endpoint handles:
-// GET /api/books?q=harry+potter
 export async function GET(req: Request) {
     try {
         const { searchParams } = new URL(req.url);
@@ -17,7 +16,6 @@ export async function GET(req: Request) {
             );
         }
 
-        // Secure backend function → calls BigBookAPI
         const books = await searchBooks(q);
 
         // Send the books to the frontend
