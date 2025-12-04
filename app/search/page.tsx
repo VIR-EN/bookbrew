@@ -34,7 +34,7 @@ export default function SearchPage() {
                         ))}
                         <Link href={"/"} className = "mr-5 text-blue-600 border-b">Add A Review</Link>
                         <Link
-                            href={`/books/${book.id}/reviews`}
+                            href={`/books/${book.id}/reviews?title=${encodeURIComponent(book.title)}`}
                             className="text-blue-600 border-b mr-5"
                         >
                             View Reviews

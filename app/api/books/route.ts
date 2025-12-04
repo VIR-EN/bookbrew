@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { searchBooks } from "@/lib/bigbook";
 
-// This endpoint handles:
 export async function GET(req: Request) {
     try {
         const { searchParams } = new URL(req.url);
