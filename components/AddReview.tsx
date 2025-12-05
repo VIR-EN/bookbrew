@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import {useNavigate} from "react-router-dom";
 import insertReview from "@/lib/insertReview";
 import {Button, Textarea} from "@mui/joy";
 import {TextField, Rating} from "@mui/material";
@@ -13,12 +12,9 @@ export default function AddReviewForm({bookId}: {bookId: number}) {
     const [rating, setRating] = React.useState<number | null>(0);
     const [text, setText] = useState("");
 
-    const navigate = useNavigate();
-
     const [buttonClick, setButtonClick] = React.useState<HTMLButtonElement | null>(null);
     const handleClose = () => {
         setButtonClick(null);
-        navigate(-1);
     };
 
     const updateRating = (newRating: number | null) => {

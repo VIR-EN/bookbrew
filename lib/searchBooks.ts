@@ -1,15 +1,15 @@
 import { SearchBooksResponse, Book } from "@/types/book";
 
 export async function searchBooks(query: string): Promise<Book[]> {
-    const apiKey = process.env.BIGBOOK_API_KEY;
+    const API_KEY = process.env.BIGBOOK_API_KEY;
 
-    if (!apiKey) {
+    if (!API_KEY) {
         throw new Error("Missing BIGBOOK_API_KEY in environment variables");
     }
 
     const url = new URL("https://api.bigbookapi.com/search-books");
     url.searchParams.set("query", query);
-    url.searchParams.set("api-key", apiKey);
+    url.searchParams.set("api-key", API_KEY);
 
     const res = await fetch(url.toString(), {
         method: "GET",

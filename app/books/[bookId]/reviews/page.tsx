@@ -36,7 +36,7 @@ export default function BookReviewsPage() {
 
                 {reviews.map(r => (
                     <div key={r.id} className="border border-black p-4 pt-3 mt-5">
-                        <div className="font-bold text-lg">{r.name}</div>
+                        <div className="font-bold text-lg">{r.reviewTitle}</div>
                         <div>Rating: {r.rating}/5</div>
                         <p>{r.text}</p>
                         <div> {new Date(r.createdAt).toLocaleString()} </div>
