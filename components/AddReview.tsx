@@ -1,17 +1,25 @@
 "use client";
 import React from "react";
+import {useNavigate} from "react-router-dom";
 import insertReview from "@/lib/insertReview";
-import {Textarea} from "@mui/joy";
+import {Button, Textarea} from "@mui/joy";
 import {TextField, Rating} from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import {useState} from "react";
-import {bottom} from "@popperjs/core";
 
 // Form component for user to fill in their review
 export default function AddReviewForm({bookId}: {bookId: number}) {
     const [reviewTitle, setReviewTitle] = useState("");
     const [rating, setRating] = React.useState<number | null>(0);
     const [text, setText] = useState("");
+
+    const navigate = useNavigate();
+
+    const [buttonClick, setButtonClick] = React.useState<HTMLButtonElement | null>(null);
+    const handleClose = () => {
+        setButtonClick(null);
+        navigate(-1);
+    };
 
     const updateRating = (newRating: number | null) => {
         setRating(newRating);
@@ -58,6 +66,17 @@ export default function AddReviewForm({bookId}: {bookId: number}) {
                     placeholder="Enter your reivew..."
                     value={text}
                     onChange={(e) => setText(e.target.value)} />
+            </div>
+            <div className="m-2">
+                <Button
+                    onClick={() => {
+                        insertReview(bookId, reviewTitle, rating, text)
+                        .catch(error => {console.log("FAILURE: 'Submit' button fail")})
+                        handleClose()
+                    }}
+                >
+                    Submit
+                </Button>
             </div>
         </form>
     );
