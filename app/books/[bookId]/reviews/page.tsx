@@ -26,20 +26,23 @@ export default function BookReviewsPage() {
 
     return (
         <div>
-            <Link href="/" className="text-blue-500 underline">Back</Link>
+            <Link href="/" className="text-blue-500 underline text-3xl ml-5 block mt-2">Back</Link>
 
-            <h1> Reviews for {bookTitle || `Book #${bookId}`} </h1>
 
-            {reviews.length === 0 && <p>No reviews yet.</p>}
+            <h1 className="font-bold text-2xl text-center mt-2"> Reviews for {bookTitle || `Book #${bookId}`} </h1>
 
-            {reviews.map(r => (
-                <div key={r.id}>
-                    <div>{r.name}</div>
-                    <div>Rating: {r.rating}/5</div>
-                    <p>{r.text}</p>
-                    <div> {new Date(r.createdAt).toLocaleString()} </div>
-                </div>
-            ))}
+            <div className="w-1/2 mx-auto">
+                {reviews.length === 0 && <p>No reviews yet.</p>}
+
+                {reviews.map(r => (
+                    <div key={r.id} className="border border-black p-4 pt-3 mt-5">
+                        <div className="font-bold text-lg">{r.name}</div>
+                        <div>Rating: {r.rating}/5</div>
+                        <p>{r.text}</p>
+                        <div> {new Date(r.createdAt).toLocaleString()} </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
