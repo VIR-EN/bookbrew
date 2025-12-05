@@ -24,17 +24,17 @@ export default function AddReviewButton({bookId}: {bookId: number}) {
             <Button aria-describedby={"AddReviewButton"} onClick={handleClick}>
                 Add A Review
             </Button>
-            <Popover
-                id={"AddAReviewButton"}
-                open={open}
-                anchorEl={buttonClick}
-                onClose={handleClose}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                }}
-            ><AddReviewForm bookId={bookId} />
-            </Popover>
+            {/*<Popover*/}
+            {/*    id={"AddAReviewButton"}*/}
+            {/*    open={open}*/}
+            {/*    anchorEl={buttonClick}*/}
+            {/*    onClose={handleClose}*/}
+            {/*    anchorOrigin={{*/}
+            {/*        vertical: 'bottom',*/}
+            {/*        horizontal: 'left',*/}
+            {/*    }}*/}
+            {/*><AddReviewForm bookId={bookId} />*/}
+            {/*</Popover>*/}
         </div>
     );
 }

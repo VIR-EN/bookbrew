@@ -7,7 +7,8 @@ import StarIcon from "@mui/icons-material/Star";
 import {useState} from "react";
 
 // Form component for user to fill in their review
-export default function AddReviewForm({bookId}: {bookId: number}) {
+export default function AddReviewForm(
+    {bookId, bookTitle}: { bookId: string, bookTitle: string }) {
     const [reviewTitle, setReviewTitle] = useState("");
     const [rating, setRating] = React.useState<number | null>(0);
     const [text, setText] = useState("");
@@ -15,6 +16,8 @@ export default function AddReviewForm({bookId}: {bookId: number}) {
     const [buttonClick, setButtonClick] = React.useState<HTMLButtonElement | null>(null);
     const handleClose = () => {
         setButtonClick(null);
+        // window.location.href = `/search?q=${bookTitle}`;
+        window.location.href = "/";
     };
 
     const updateRating = (newRating: number | null) => {

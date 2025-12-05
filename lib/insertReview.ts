@@ -3,7 +3,7 @@ import type {AddReviewResponse} from "@/types/review";
 import {getDb, DB_COLLECTION} from "@/lib/mongo";
 
 export default async function insertReview(
-    bookId: number,
+    bookId: string,
     reviewTitle: string,
     rating: number | null,
     text: string,

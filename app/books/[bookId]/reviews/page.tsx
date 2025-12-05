@@ -1,12 +1,11 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import type { Review } from "@/types/review";
 import Link from "next/link";
 
 export default function BookReviewsPage() {
-    const { bookId } = useParams();
+    const bookId = useParams();
     const bookTitle = useSearchParams().get("title") ?? "";
     const [reviews, setReviews] = useState<Review[]>([]);
     const [loading, setLoading] = useState(true);
@@ -27,7 +26,6 @@ export default function BookReviewsPage() {
     return (
         <div>
             <Link href="/" className="text-blue-500 underline text-3xl ml-5 block mt-2">Back</Link>
-
 
             <h1 className="font-bold text-2xl text-center mt-2"> Reviews for {bookTitle || `Book #${bookId}`} </h1>
 

@@ -1,6 +1,6 @@
 export interface Review {
     id: string;          // mongo id
-    bookId: number;      // from bigbook api id
+    bookId: string;      // from bigbook api id
     reviewTitle: string;
     rating: number;      // 1 to 5
     text: string;
@@ -8,6 +8,6 @@ export interface Review {
 }
 
 export interface AddReviewResponse {
-    bookId: number,
+    bookId: string,
     success: boolean,
 }

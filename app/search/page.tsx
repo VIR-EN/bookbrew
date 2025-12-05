@@ -3,7 +3,9 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from "next/link";
+import type {Book} from "@/types/book"
 import Header from "@/components/Header";
+import AddReviewPage from "@/app/books/[bookId]/addReview/page";
 
 export default function SearchPage() {
     const searchParams = useSearchParams();
@@ -52,12 +54,14 @@ export default function SearchPage() {
                             {book.authors.map((author: any) => (
                             <p key = {author.name} className="text-gray-600 mr-5">By {author.name} </p>
                             ))}
-                            <Link href="/add" rel="noopener noreferrer" target="_blank"> Add A Review </Link>
+                            <Link
+                                href={
+                                `/books/${book.id}/addReview?title=${encodeURIComponent(book.title)}&bookId=${book.id}`}
+                                rel="noopener noreferrer" target="_blank"> Add A Review
+                            </Link>
                             <Link
                                 href={`/books/${book.id}/reviews?title=${encodeURIComponent(book.title)}`}
-                                className="text-blue-600 border-b mr-5"
-                            >
-                                View Reviews
+                                className="text-blue-600 border-b mr-5"> View Reviews
                             </Link>
                         </div>
                     ))}
