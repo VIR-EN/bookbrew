@@ -9,6 +9,7 @@ export default function SearchPage() {
     const searchParams = useSearchParams();
     const query = searchParams.get('q'); //Grab the Search Query from the URL
     const [books, setBooks] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (query) {
@@ -20,8 +21,24 @@ export default function SearchPage() {
         const response = await fetch(`/api/books?q=${encodeURIComponent(searchQuery)}`); //Calls our API endpoint
         const data = await response.json();
         setBooks(data.books);
+        setLoading(false)
     }
 
+    if (loading) {
+        return (
+            <div className = "flex items-center justify-center h-screen">
+                <h1 className = "font-bold text-5xl">Loading...</h1>
+            </div>
+        )
+    }
+
+    if (books.length === 0) {
+        return (
+            <div className = "flex items-center justify-center h-screen">
+                <h1 className = "text-red-500 font-bold text-5xl">No Books Found!</h1>
+            </div>
+        )
+    }
     return (
         <>
             <Header/>
