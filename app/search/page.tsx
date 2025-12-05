@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from "next/link";
+import Header from "@/components/Header";
 
 export default function SearchPage() {
     const searchParams = useSearchParams();
@@ -12,7 +13,7 @@ export default function SearchPage() {
 
     useEffect(() => {
         if (query) {
-            fetchBooks(query);
+            fetchBooks(query)
         }
     }, [query]);
 
@@ -39,26 +40,29 @@ export default function SearchPage() {
         )
     }
     return (
-        <div className="max-w-4xl mx-auto">
-            <div>
-                {books.map((book: any) => (
-                    <div key={book.id} className="border border-gray-200 p-4 m-4">
-                        <h1 className="text-xl font-semibold text-gray-800">
-                            {book.title}
-                        </h1>
-                        {book.authors.map((author: any) => (
-                        <p key = {author.name} className="text-gray-600 mr-5">By {author.name} </p>
-                        ))}
-                        <Link href={"/"} className = "mr-5 text-blue-600 border-b">Add A Review</Link>
-                        <Link
-                            href={`/books/${book.id}/reviews?title=${encodeURIComponent(book.title)}`}
-                            className="text-blue-600 border-b mr-5"
-                        >
-                            View Reviews
-                        </Link>
-                    </div>
-                ))}
+        <>
+            <Header/>
+            <div className="max-w-4xl mx-auto p-6">
+                <div className="space-y-4">
+                    {books.map((book: any) => (
+                        <div key={book.id} className="border border-gray-200 p-4">
+                            <h1 className="text-xl font-semibold text-gray-800">
+                                {book.title}
+                            </h1>
+                            {book.authors.map((author: any) => (
+                            <p key = {author.name} className="text-gray-600 mr-5">By {author.name} </p>
+                            ))}
+                            <Link href="/add" rel="noopener noreferrer" target="_blank"> Add A Review </Link>
+                            <Link
+                                href={`/books/${book.id}/reviews?title=${encodeURIComponent(book.title)}`}
+                                className="text-blue-600 border-b mr-5"
+                            >
+                                View Reviews
+                            </Link>
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 }

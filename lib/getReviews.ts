@@ -17,7 +17,7 @@ export async function getReviewsByBookId(bookId: number): Promise<Review[]> {
     return docs.map((doc: any) => ({
         id: doc._id.toString(),
         bookId: doc.bookId,
-        name: doc.name,
+        reviewTitle: doc.name,
         rating: doc.rating,
         text: doc.text,
         createdAt: doc.createdAt.toISOString(),
