@@ -11,7 +11,7 @@ export default function SearchPage() {
 
     useEffect(() => {
         if (query) {
-            fetchBooks(query);
+            fetchBooks(query)
         }
     }, [query]);
 
@@ -32,7 +32,7 @@ export default function SearchPage() {
                         {book.authors.map((author: any) => (
                         <p key = {author.name} className="text-gray-600 mr-5">By {author.name} </p>
                         ))}
-                        <Link href={"/"} className = "mr-5 text-blue-600 border-b">Add A Review</Link>
+                        <Link href={"/add"} className = "mr-5 text-blue-600 border-b">Add A Review</Link>
                         <Link
                             href={`/books/${book.id}/reviews?title=${encodeURIComponent(book.title)}`}
                             className="text-blue-600 border-b mr-5"

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getReviewsByBookId } from "@/lib/reviews";
+import { getReviewsByBookId } from "@/lib/getReviews";
 
 export async function GET(
     // incoming HTTP request, we don't use it just skip it to get to the second argument
