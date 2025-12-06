@@ -66,20 +66,20 @@ export default function SearchPage() {
     return (
         <>
             <Header/>
-            <div className="max-w-4xl mx-auto p-6 space-y-4">
-                {books.map((book: Book) => (
-                    <div key={book.id} className="border rounded-md p-2">
-                        <div className = "flex">
-                            <img src = {book.image} alt = {book.title} />
+            <div className="max-w-4xl mx-auto p-6">
+                {books.map((book: any) => (
+                    <div key={book.id} className="border bg-[#EFE9E3] rounded-md p-2 m-4">
+                        <div className = "flex h-60">
+                            <img src = {book.image} alt = {book.title} className = "border h-full w-40"/>
                             {/* Text Container */}
                             <div className = "w-full flex flex-col">
                                 <div>
-                                    <h1 className="capitalize text-4xl font-semibold text-gray-800 pl-2">
+                                    <h1 className="capitalize text-3xl font-semibold text-[#4b3621] pl-2">
                                         {book.title}
                                     </h1>
                                     <div className = "pl-2">
                                         {book.authors.map((author: any) => (
-                                        <p key = {author.name} className="text-xl text-gray-600 mr-5">By {author.name} </p>
+                                            <p key = {author.name} className="text-xl text-[#4b3621] mr-5">By {author.name} </p>
                                         ))}
                                     </div>
                                 </div>
@@ -88,13 +88,13 @@ export default function SearchPage() {
                                     <Link
                                         href={`/addReview/?title=${encodeURIComponent(book.title)}&bookId=${encodeURI(book.id)}`}
                                         rel="noopener noreferrer" target="_blank"
-                                        className="bg-gray-500 text-white font-bold border rounded-md mb-2 p-2 h-fit w-fit"
+                                        className="bg-[#C9B59C] text-black font-bold border rounded-md mb-2 p-2 h-fit w-31 text-center hover:bg-[#4b3621] hover:text-[#F9F8F6]"
                                     >Add A Review
                                     </Link>
 
                                     <Link
                                         href={`/books/${book.id}/reviews?title=${encodeURIComponent(book.title)}`}
-                                        className="bg-blue-400 text-white font-bold rounded-md p-2 h-fit w-fit">View Reviews
+                                        className="bg-[#C9B59C] text-black font-bold border rounded-md p-2 h-fit w-31 text-center hover:bg-[#4b3621] hover:text-[#F9F8F6]">View Reviews
                                     </Link>
                                 </div>
                             </div>
