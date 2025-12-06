@@ -1,23 +1,17 @@
 import type { Review } from "@/types/review";
-import {getDb} from "@/lib/mongo";
+import getCollection, {REVIEW_COLLECTION} from "@/lib/db";
 
 // returns an array of review objects
 export async function getReviewsByBookId(bookId: string): Promise<Review[]> {
+    const collection = await getCollection(REVIEW_COLLECTION); // grabs reviews collection
 
-    const db = await getDb();
-
-    const collection = db.collection("reviews"); // grabs reviews collection
-
-    const docs = await collection
-        .find({ bookId })           // find all matches for the id
-        .sort({ createdAt: 1 })     // oldest first is displayed
-        .toArray();
+    const docs = await collection.find({bookId}).toArray();
 
     // converts to review shape from the review.ts interface
     return docs.map((doc: any) => ({
-        id: doc._id,
-        bookId: doc.bookId,
-        reviewTitle: doc.name,
+        id: doc._id.toString(),
+        bookId: String(doc.bookId), // just to make sure its a string
+        reviewTitle: doc.reviewTitle,
         rating: doc.rating,
         text: doc.text,
         createdAt: doc.createdAt.toISOString(),

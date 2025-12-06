@@ -5,7 +5,8 @@ import type { Review } from "@/types/review";
 import Link from "next/link";
 
 export default function BookReviewsPage() {
-    const bookId = useParams();
+    const params = useParams();
+    const bookId = params.bookId as string;
     const bookTitle = useSearchParams().get("title") ?? "";
     const [reviews, setReviews] = useState<Review[]>([]);
     const [loading, setLoading] = useState(true);
