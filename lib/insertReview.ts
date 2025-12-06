@@ -29,5 +29,7 @@ export default async function insertReview(
         throw new Error("FAILED TO ADD NEW REVIEW");
     } else success = true;
 
+    console.log("Successfully added review!");
+
     return ({bookId, success:success});
 }

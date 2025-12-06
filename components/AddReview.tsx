@@ -8,14 +8,22 @@ import {useState} from "react";
 
 // Form component for user to fill in their review
 export default function AddReviewForm(
-    {bookId}: { bookId: string, bookTitle: string }) {
+    {bookId, bookTitle}: {bookId: string, bookTitle: string},) {
     const [reviewTitle, setReviewTitle] = useState("");
     const [rating, setRating] = React.useState<number | null>(0);
     const [text, setText] = useState("");
 
     const handleSubmitClose = () => {
-        window.location.href = "/";
+        // window.location.href =
+        //     `/addReview/?title=${encodeURIComponent(bookTitle)}&bookId=${encodeURI(bookId)}`;
+        // window.location.href = "/";
     };
+
+    const clearInputs = () => {
+        setReviewTitle("");
+        setRating(0);
+        setText("");
+    }
 
     const updateRating = (newRating: number | null) => {
         setRating(newRating);
@@ -24,7 +32,6 @@ export default function AddReviewForm(
     return (
         <form className="flex flex-col justify-center w-3/4 bg-red-100 rounded-xl p-4 m-10"
               onSubmit={async(event) => {
-                  event.preventDefault();
                   insertReview(bookId, reviewTitle, rating, text)
                       .then((response) =>{
                           console.log(response.success);
@@ -32,7 +39,8 @@ export default function AddReviewForm(
                       .catch((error) => {
                           console.log(error);
                       });
-                  handleSubmitClose();
+                  event.preventDefault();
+                  clearInputs();
               }}
         >
             <div className="m-2">
