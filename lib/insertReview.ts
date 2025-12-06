@@ -1,6 +1,6 @@
 "use server";
 import type {AddReviewResponse} from "@/types/review";
-import {getDb, DB_COLLECTION} from "@/lib/mongo";
+import getCollection, {REVIEW_COLLECTION} from "@/lib/db";
 
 export default async function insertReview(
     bookId: string,
@@ -20,13 +20,13 @@ export default async function insertReview(
     }
 
     // Insert to db
-    const reviewCollection = await getDb();
+    const reviewCollection = await getCollection(REVIEW_COLLECTION);
     const res =
-        await reviewCollection.collection(DB_COLLECTION).insertOne(new_review);
+        await reviewCollection.insertOne(new_review);
     let success = false;
 
     if (!res.acknowledged) {
-        console.log("FAILED TO ADD NEW REVIEW");
+        throw new Error("FAILED TO ADD NEW REVIEW");
     } else success = true;
 
     return ({bookId, success:success});

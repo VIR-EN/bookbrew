@@ -8,7 +8,7 @@ export interface Rating {
 }
 
 export interface Book {
-    id: number;
+    id: string;
     title: string;
     subtitle?: string;
     image?: string;

@@ -8,15 +8,12 @@ import {useState} from "react";
 
 // Form component for user to fill in their review
 export default function AddReviewForm(
-    {bookId, bookTitle}: { bookId: string, bookTitle: string }) {
+    {bookId}: { bookId: string, bookTitle: string }) {
     const [reviewTitle, setReviewTitle] = useState("");
     const [rating, setRating] = React.useState<number | null>(0);
     const [text, setText] = useState("");
 
-    const [buttonClick, setButtonClick] = React.useState<HTMLButtonElement | null>(null);
-    const handleClose = () => {
-        setButtonClick(null);
-        // window.location.href = `/search?q=${bookTitle}`;
+    const handleSubmitClose = () => {
         window.location.href = "/";
     };
 
@@ -26,15 +23,18 @@ export default function AddReviewForm(
 
     return (
         <form className="flex flex-col justify-center w-3/4 bg-red-100 rounded-xl p-4 m-10"
-                onSubmit={async(event) => {
-                    insertReview(bookId, reviewTitle, rating, text)
-                        .then(response => {
-                            console.log("Adding review...");
-                        })
-                        .catch((error) => {
-                            console.log("ERROR ENCOUNTERED WHEN ADDING REVIEW");
-                        });
-                }}>
+              onSubmit={async(event) => {
+                  event.preventDefault();
+                  insertReview(bookId, reviewTitle, rating, text)
+                      .then((response) =>{
+                          console.log(response.success);
+                      })
+                      .catch((error) => {
+                          console.log(error);
+                      });
+                  handleSubmitClose();
+              }}
+        >
             <div className="m-2">
                 <TextField
                     variant="standard"
@@ -68,11 +68,9 @@ export default function AddReviewForm(
             </div>
             <div className="m-2">
                 <Button
-                    onClick={() => {
-                        insertReview(bookId, reviewTitle, rating, text)
-                        .catch(error => {console.log("FAILURE: 'Submit' button fail")})
-                        handleClose()
-                    }}
+                    sx={{width:"80 px"}}
+                    type="submit"
+                    disabled={reviewTitle === "" || text === ""}
                 >
                     Submit
                 </Button>

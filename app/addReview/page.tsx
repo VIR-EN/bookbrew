@@ -1,9 +1,7 @@
 "use client";
-import {Review} from "@/types/review";
 import AddReviewForm from "@/components/AddReview";
-import {useState} from "react";
 import Header from "@/components/Header";
-import {useParams, useSearchParams} from "next/navigation";
+import {useSearchParams} from "next/navigation";
 
 export default function AddReviewPage() {
     const bookId = useSearchParams().get("bookId") ?? "";

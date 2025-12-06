@@ -1,7 +1,7 @@
 import { SearchBooksResponse, Book } from "@/types/book";
 
 export async function searchBooks(query: string): Promise<Book[]> {
-    const API_KEY = process.env.BIGBOOK_API_KEY;
+    const API_KEY = process.env.NEXT_PUBLIC_BIGBOOK_API_KEY;
 
     if (!API_KEY) {
         throw new Error("Missing BIGBOOK_API_KEY in environment variables");

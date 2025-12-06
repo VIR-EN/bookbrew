@@ -2,7 +2,7 @@ import type { Review } from "@/types/review";
 import {getDb} from "@/lib/mongo";
 
 // returns an array of review objects
-export async function getReviewsByBookId(bookId: number): Promise<Review[]> {
+export async function getReviewsByBookId(bookId: string): Promise<Review[]> {
 
     const db = await getDb();
 
@@ -15,7 +15,7 @@ export async function getReviewsByBookId(bookId: number): Promise<Review[]> {
 
     // converts to review shape from the review.ts interface
     return docs.map((doc: any) => ({
-        id: doc._id.toString(),
+        id: doc._id,
         bookId: doc.bookId,
         reviewTitle: doc.name,
         rating: doc.rating,

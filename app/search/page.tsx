@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from "next/link";
 import type {Book} from "@/types/book"
 import Header from "@/components/Header";
-import AddReviewPage from "@/app/books/[bookId]/addReview/page";
+import AddReviewPage from "@/app/addReview/page";
 
 export default function SearchPage() {
     const searchParams = useSearchParams();
@@ -67,7 +67,7 @@ export default function SearchPage() {
         <>
             <Header/>
             <div className="max-w-4xl mx-auto p-6 space-y-4">
-                {books.map((book: any) => (
+                {books.map((book: Book) => (
                     <div key={book.id} className="border rounded-md p-2">
                         <div className = "flex">
                             <img src = {book.image} alt = {book.title} />
@@ -87,7 +87,7 @@ export default function SearchPage() {
                                 <div className = "pl-2 flex-1 flex flex-col justify-center">
                                     <Link
                                         href={
-                                            `/books/${book.id}/addReview?title=${encodeURIComponent(book.title)}&bookId=${book.id}`}
+                                            `/addReview/?title=${encodeURIComponent(book.title)}&bookId=${book.id}`}
                                         rel="noopener noreferrer" target="_blank"
                                         className="bg-gray-500 text-white font-bold border rounded-md mb-2 p-2 h-fit w-fit"
                                     >Add A Review
