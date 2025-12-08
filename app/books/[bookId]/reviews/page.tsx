@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import type { Review } from "@/types/review";
 import Link from "next/link";
+import Header from "@/components/Header";
+
 
 export default function BookReviewsPage() {
     const params = useParams();
@@ -25,23 +27,23 @@ export default function BookReviewsPage() {
     if (loading) return <p>Loading...</p>;
 
     return (
-        <div>
-            <Link href="/" className="text-blue-500 underline text-3xl ml-5 block mt-2">Back</Link>
+        <>
+            <Header />
 
-            <h1 className="font-bold text-2xl text-center mt-2"> Reviews for {bookTitle || `Book #${bookId}`} </h1>
+            <h1 className="capitalize text-3xl font-semibold text-[#3d2e1f] pl-2 text-center mt-9"> Reviews for {bookTitle || `Book #${bookId}`} </h1>
 
-            <div className="w-1/2 mx-auto">
+            <div className="max-w-4xl mx-auto p-6">
                 {reviews.length === 0 && <p>No reviews yet.</p>}
 
                 {reviews.map(r => (
-                    <div key={r.id} className="border border-black p-4 pt-3 mt-5">
-                        <div className="font-bold text-lg">{r.reviewTitle}</div>
-                        <div>Rating: {r.rating}/5</div>
-                        <p>{r.text}</p>
-                        <div> {new Date(r.createdAt).toLocaleString()} </div>
+                    <div key={r.id} className="border bg-[#EFE9E3] rounded-md p-2 m-4">
+                        <div className="font-bold text-2xl">{r.reviewTitle}</div>
+                        <div className="text-xl">Rating: {r.rating}/5</div>
+                        <p className="text-xl">{r.text}</p>
+                        <div className="text-xl"> {new Date(r.createdAt).toLocaleString()} </div>
                     </div>
                 ))}
             </div>
-        </div>
+        </>
     );
 }
