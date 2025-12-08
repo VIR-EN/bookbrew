@@ -3,25 +3,29 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from "next/link";
-import type {Book} from "@/types/book"
 import Header from "@/components/Header";
-import AddReviewPage from "@/app/addReview/page";
 
+/* This component was implemented by Deanson */
+/* This component decodes the search parameters from the URL, calls the external BookBook API and displays
+each book's image, title, author */
+ /* Each book <div> has a Link component for adding and viewing reviews respectively */
 export default function SearchPage() {
-    const searchParams = useSearchParams();
+    const searchParams = useSearchParams(); //We ended up passing the search query in the URL and using the useSearchParams() hook to access them as it was the most convenient method as compared to useParams()
     const query = searchParams.get('q'); //Grab the Search Query from the URL
-    const [books, setBooks] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const[error, setError] = useState(false);
+    const [books, setBooks] = useState([]); //Used to store the array of books
+    const [loading, setLoading] = useState(true); //Used for logic when books are still being fetched
+    const[error, setError] = useState(false); //Used for logic when fetch fails
 
     useEffect(() => {
+        //Runs automatically whenever the user searches something (after they press enter)
         if (query) {
             fetchBooks(query)
         }
     }, [query]);
 
-    console.log(books);
-
+    /* This function essentially fetches the array of books related to the search query. It sets the loading variable to true
+    while fetching and sets the error variable to true if it fails to fetch.
+     */
     const fetchBooks = async (searchQuery: string) => {
         try {
             const response = await fetch(`/api/books?q=${encodeURIComponent(searchQuery)}`); //Calls our API endpoint
@@ -63,6 +67,7 @@ export default function SearchPage() {
             </div>
         )
     }
+
     return (
         <>
             <Header/>
