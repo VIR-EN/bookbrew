@@ -92,7 +92,6 @@ export default function SearchPage() {
                                 <div className = "pl-2 flex-1 flex flex-col justify-center">
                                     <Link
                                         href={`/addReview/?title=${encodeURIComponent(book.title)}&bookId=${encodeURI(book.id)}`}
-                                        rel="noopener noreferrer" target="_blank"
                                         className="bg-[#C9B59C] text-black font-bold border rounded-md mb-2 p-2 h-fit w-31 text-center hover:bg-[#4b3621] hover:text-[#F9F8F6]"
                                     >Add A Review
                                     </Link>

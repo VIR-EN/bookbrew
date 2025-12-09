@@ -43,6 +43,7 @@ export default function AddReviewForm(
                   clearInputs();
               }}
         >
+            <h1 className="capitalize text-3xl font-semibold text-[#3d2e1f] pl-2 text-center mt-9"> Reviews for {bookTitle || `Book #${bookId}`} </h1>
             <div className="m-2">
                 <TextField
                     variant="standard"
