@@ -37,7 +37,7 @@ export default function AddReviewForm(
 
     if (!session) {
         return (
-            <div className="flex flex-col items-center justify-center bg-red-100 p-6 rounded-xl m-10">
+            <div className="flex flex-col items-center justify-center bg-[#C9B59C] p-6 rounded-xl m-10">
                 <h2 className="text-xl font-semibold mb-4 text-[#3d2e1f]">
                     You must be signed in to write a review
                 </h2>

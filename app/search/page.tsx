@@ -70,7 +70,6 @@ export default function SearchPage() {
 
     return (
         <>
-
             <div className="max-w-4xl mx-auto p-6">
                 {books.map((book: any) => (
                     <div key={book.id} className="border bg-[#EFE9E3] rounded-md p-2 m-4">
