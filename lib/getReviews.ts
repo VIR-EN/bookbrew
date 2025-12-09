@@ -14,6 +14,8 @@ export async function getReviewsByBookId(bookId: string): Promise<Review[]> {
         reviewTitle: doc.reviewTitle,
         rating: doc.rating,
         text: doc.text,
+        userId: doc.userId || null,
+        userName: doc.userName || "Anonymous",
         createdAt: doc.createdAt.toISOString(),
     }));
 }

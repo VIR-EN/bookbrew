@@ -3,7 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from "next/link";
-import Header from "@/components/Header";
+
 
 /* This component was implemented by Deanson */
 /* This component decodes the search parameters from the URL, calls the external BookBook API and displays
@@ -70,7 +70,7 @@ export default function SearchPage() {
 
     return (
         <>
-            <Header/>
+
             <div className="max-w-4xl mx-auto p-6">
                 {books.map((book: any) => (
                     <div key={book.id} className="border bg-[#EFE9E3] rounded-md p-2 m-4">

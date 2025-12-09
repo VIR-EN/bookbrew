@@ -1,6 +1,7 @@
 "use server";
 import type {AddReviewResponse} from "@/types/review";
 import getCollection, {REVIEW_COLLECTION} from "@/lib/db";
+import { auth } from "@/lib/auth";
 
 export default async function insertReview(
     bookId: string,
@@ -9,6 +10,12 @@ export default async function insertReview(
     text: string,
 ): Promise<AddReviewResponse> {
 
+    const session = await auth();
+
+    if (!session || !session.user || !session.user.email || !session.user.name) {
+        throw new Error("You must be signed in to add a review.");
+    }
+
     console.log("Adding new review...");
 
     const new_review = {
@@ -16,6 +23,8 @@ export default async function insertReview(
         reviewTitle: reviewTitle,
         rating: rating,
         text: text,
+        userId: session.user.email,
+        userName: session.user.name,
         createdAt: new Date(),
     }
 

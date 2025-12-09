@@ -9,7 +9,7 @@ export default function AddReviewPage() {
     return (
         <>
             <title> BookBrew | Add A Review </title>
-            <Header />
+
             <main className="flex flex-col items-center justify-center w-full">
                 <AddReviewForm
                     bookId={bookId}

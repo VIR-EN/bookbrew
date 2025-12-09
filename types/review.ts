@@ -5,6 +5,7 @@ export interface Review {
     rating: number;      // 1 to 5
     text: string;
     createdAt: string;
+    userName?: string;
 }
 
 export interface AddReviewResponse {
