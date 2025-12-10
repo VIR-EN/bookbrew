@@ -48,7 +48,7 @@ export default function AddReviewForm(
     return (
         <div className="flex flex-box items-center w-4/5">
             <div>
-                <img src = {bookImg} alt = {bookTitle} className = "border size-80"/>
+                <img src = {bookImg} alt = {bookTitle} className = "border h-100"/>
             </div>
             <form
                 className="flex flex-col justify-center w-3/4 bg-[#EFE9E3] border rounded-xl p-4 m-10"
