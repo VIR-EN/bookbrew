@@ -1,3 +1,4 @@
+// Elias Pamfilis and Erin Cho
 export interface Review {
     id: string;          // mongo id
     bookId: string;      // from bigbook api id

@@ -1,25 +1,24 @@
+// Elias Pamfils
 "use client";
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import type { Review } from "@/types/review";
-import Link from "next/link";
-
 
 
 export default function BookReviewsPage() {
-    const params = useParams();
-    const bookId = params.bookId as string;
-    const bookTitle = useSearchParams().get("title") ?? "";
-    const [reviews, setReviews] = useState<Review[]>([]);
-    const [loading, setLoading] = useState(true);
+    const params = useParams(); // access dynamic segment with useParams
+    const bookId = params.bookId as string; // extracts bookId as a string
+    const bookTitle = useSearchParams().get("title") ?? ""; // reads the title from the url
+    const [reviews, setReviews] = useState<Review[]>([]); // holds the array of review objects
+    const [loading, setLoading] = useState(true); // sets the loading and stops when its done
 
     useEffect(() => {
-        // call the api route then wait for data and then set that data to data.review or empty
+        // call the api route then wait for data and then set that data to data.review or empty if needed
         const load = async () => {
             const res = await fetch(`/api/books/${bookId}/reviews`);
             const data = await res.json();
             setReviews(data.reviews || []);
-            setLoading(false);
+            setLoading(false); // loading stops
         };
         void load(); // call the function and void since we dont need the promise (cause load is async)
     }, [bookId]);
