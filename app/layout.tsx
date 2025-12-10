@@ -28,6 +28,10 @@ export default function RootLayout({
     <html lang="en">
     <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
     <Providers>
+        {/*
+            Wraps the application with the authentication SessionProvider
+            so that all child components can access user session state.
+          */}
         <Header />
         {children}
     </Providers>

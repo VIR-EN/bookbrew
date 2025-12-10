@@ -1,3 +1,5 @@
+// by Viren Arora
+//Global Authentication Session Provider
 "use client";
 
 import { SessionProvider } from "next-auth/react";

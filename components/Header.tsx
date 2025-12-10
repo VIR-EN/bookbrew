@@ -1,11 +1,15 @@
+//Global Navigation Header with Authentication Controls
+// by Viren
 "use client";
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
+
 export default function Header() {
     const { data: session, status } = useSession();
-
+    // Extracts the session object and loading status from NextAuth
+    // status reflects whether authentication is loading, authenticated, or unauthenticated
     return (
         <header className="w-full bg-[#4b3621] text-white px-6 py-4 flex items-center justify-between">
 
