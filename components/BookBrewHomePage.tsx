@@ -18,9 +18,6 @@ export default function BookBrewHomepage() {
 
     return (
         <div className="min-h-screen bg-[#e7ddd3] flex items-center justify-center px-4 relative">
-
-
-
             <div className="bg-[#f4ede6] w-full max-w-2xl rounded-2xl shadow-lg border border-[#3d2e1f] p-10 flex flex-col items-center text-center">
                 <h1 className="text-6xl font-extrabold text-[#3d2e1f] mb-3">
                     BookBrew
